@@ -23,7 +23,7 @@ class SummaryCard(TypedDict):
     title: str
     url: str
     summary: str
-    metadata: dict[str, Any]  # salary, location, price, rating, etc.
+    metadata: dict[str, str]  # company, location, salary, price, rating
 
 
 class NextAction(TypedDict):
