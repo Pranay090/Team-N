@@ -37,7 +37,7 @@ User Query
 | Layer | Technology |
 |-------|-----------|
 | Graph orchestration | LangGraph |
-| LLM | Claude (claude-sonnet-4-6) via langchain-anthropic |
+| LLM | GPT-4o via langchain-openai |
 | Search | Tavily API |
 | HTTP scraping | httpx + BeautifulSoup4 |
 | UI | Streamlit |
