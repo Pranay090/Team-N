@@ -14,7 +14,7 @@ _PRODUCT_DOMAINS = [
 
 
 def scrape_products(state: AgentState) -> dict:
-    query = state["query"]
+    query = state.get("resolved_query") or state["query"]
     search_query = f"{query} review best recommendations 2024 2025"
 
     hits = tavily_search(

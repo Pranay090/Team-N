@@ -13,7 +13,7 @@ _JOB_DOMAINS = [
 
 
 def scrape_jobs(state: AgentState) -> dict:
-    query = state["query"]
+    query = state.get("resolved_query") or state["query"]
     search_query = f"{query} job listing site:linkedin.com OR site:indeed.com OR site:glassdoor.com"
 
     hits = tavily_search(

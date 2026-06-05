@@ -36,9 +36,17 @@ class AgentState(TypedDict):
     # Conversation
     messages: Annotated[list, add_messages]
 
-    # Derived from the latest user message
+    # Raw query from user; resolved_query is the standalone rewrite
     query: str
+    resolved_query: str
     intent: str  # "job" | "product" | "general"
+
+    # Clarification gate
+    needs_clarification: bool
+    clarification_questions: list[str]
+
+    # Recent conversation history passed in from the UI
+    conversation_history: list[dict]  # [{role, content}, ...]
 
     # Pipeline stages
     raw_results: list[RawResult]

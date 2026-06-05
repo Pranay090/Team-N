@@ -4,7 +4,7 @@ from src.agent.search import tavily_search
 
 
 def scrape_general(state: AgentState) -> dict:
-    query = state["query"]
+    query = state.get("resolved_query") or state["query"]
 
     hits = tavily_search(query=query, max_results=8)
 
