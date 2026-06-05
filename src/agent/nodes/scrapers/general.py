@@ -1,8 +1,22 @@
-"""Node 2C — General scraper. Targets Google / Bing via Tavily search API."""
+"""Node 2C — General scraper. Open web search via Tavily."""
 from src.agent.state import AgentState, RawResult
+from src.agent.search import tavily_search
 
 
 def scrape_general(state: AgentState) -> dict:
-    # Phase 3 will implement Tavily search.
-    raw: list[RawResult] = []
+    query = state["query"]
+
+    hits = tavily_search(query=query, max_results=8)
+
+    raw: list[RawResult] = [
+        {
+            "url": h["url"],
+            "title": h.get("title", ""),
+            "snippet": h.get("content", ""),
+            "source": "general",
+            "raw_html": None,
+        }
+        for h in hits
+    ]
+    print(f"[GeneralScraper] {len(raw)} results for: {query}")
     return {"raw_results": raw}
